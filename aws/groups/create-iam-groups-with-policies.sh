@@ -13,9 +13,12 @@ do
         if [ "$group" != "group" ]; then
                 aws iam create-group --group-name $group
                 for policyname in $policies; do
-                        echo $policyname | sed "s/\"//g" | xargs
-                        aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/$(echo $policyname | sed "s/\"//g" | xargs) --group-name $group
+                        policyname=$(echo $policyname | sed "s/\"//g" | xargs)
+                        echo "PLNAME-->"$policyname
+                        policyarn=$(aws iam list-policies --query "Policies[?PolicyName=='$policyname'].Arn" --output text)
+                        echo "PLARN-->"$policyarn
+                        aws iam attach-group-policy --policy-arn $policyarn  --group-name $group
                 done
-        fi       
+        fi
 
 done < $INPUT

@@ -1,0 +1,7 @@
+group,policies
+Accounting,"AWSMarketplaceFullAccess, IAMUserChangePassword, ReadOnlyAccess, EnforceMFA"
+HR,"AWSMarketplaceFullAccess, IAMUserChangePassword, ReadOnlyAccess, EnforceMFA"
+Audit,"AWSMarketplaceFullAccess, IAMUserChangePassword, ReadOnlyAccess, EnforceMFA"
+Compliance,"AWSMarketplaceFullAccess, IAMUserChangePassword, ReadOnlyAccess, EnforceMFA"
+Technology,"AWSMarketplaceFullAccess, AmazonEC2FullAccess, IAMUserChangePassword, EnforceMFA"
+Graduates,"IAMUserChangePassword, ReadOnlyAccess, EnforceMFA"

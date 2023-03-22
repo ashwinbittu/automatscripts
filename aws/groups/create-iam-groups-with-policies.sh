@@ -8,11 +8,14 @@ IFS=',;'
 
 dos2unix $INPUT
 
-while read -r group policies || [ -n "$user" ]
+while read -r group policies || [ -n "$group" ]
 do
-   aws iam create-group --group-name $group
-    
+        if [ "$group" != "group" ]; then
+                aws iam create-group --group-name $group
+                for policyname in $policies; do
+                        echo $policyname | sed "s/\"//g" | xargs
+                        aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/$(echo $policyname | sed "s/\"//g" | xargs) --group-name $group
+                done
+        fi       
 
 done < $INPUT
-
-

@@ -1,12 +1,12 @@
 sudo yum install dos2unix -y
 
-INPUT=$1
+sourcegroups=$1
 OLDIFS=$IFS
 IFS=',;'
 
-[ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }
+[ ! -f $sourcegroups ] && { echo "$sourcegroups file not found"; exit 99; }
 
-dos2unix $INPUT
+dos2unix $sourcegroups
 
 while read -r group policies || [ -n "$group" ]
 do
@@ -21,4 +21,4 @@ do
                 done
         fi
 
-done < $INPUT
+done < $sourcegroups
